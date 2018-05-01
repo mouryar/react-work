@@ -51,6 +51,14 @@ class App extends Component {
       padding: '8px',
       cursor: 'pointer'
     }
+    const classes  = [];
+    if(this.state.persons.length  <= 2){
+      classes.push('red');
+    }
+
+    if(this.state.persons.length <= 1){
+      classes.push('bold');
+    }
 
     let persons = null;
     if(this.state.showPerson){
@@ -69,7 +77,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Hi This my home page</h1>
-        <h2>Secondary header</h2>
+        <p className={classes.join(' ')}>Secondary header</p>
         <button style={style} onClick={this.toggleHandler}>Show Persons</button>
         {persons}
       </div>
