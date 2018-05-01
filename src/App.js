@@ -43,6 +43,15 @@ class App extends Component {
   }
   render() {
 
+    const style = {
+      backgroundColor: 'green',
+      color: 'white',
+      font: 'inherit',
+      border: '1px solid blue',
+      padding: '8px',
+      cursor: 'pointer'
+    }
+
     let persons = null;
     if(this.state.showPerson){
       persons = (
@@ -55,14 +64,14 @@ class App extends Component {
                                   changed={(event) => this.nameChangeHandler(event, person.id)}/>
                   })}
                 </div>)
+      style.backgroundColor = 'red'
     }
     return (
       <div className="App">
         <h1>Hi This my home page</h1>
         <h2>Secondary header</h2>
-        <button onClick={this.toggleHandler}>Click Me!</button>
+        <button style={style} onClick={this.toggleHandler}>Show Persons</button>
         {persons}
-          
       </div>
     );
   }
