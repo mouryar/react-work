@@ -43,14 +43,7 @@ class App extends Component {
   }
   render() {
 
-    const style = {
-      backgroundColor: 'green',
-      color: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer'
-    }
+    var buttonClass = "";
     const assignedClasses  = [];
     if(this.state.persons.length  <= 2){
       assignedClasses.push(classes.red);
@@ -71,14 +64,15 @@ class App extends Component {
                                   key={person.id}
                                   changed={(event) => this.nameChangeHandler(event, person.id)}/>
                   })}
-                </div>)
-      style.backgroundColor = 'red'
+                </div>);
+                buttonClass = classes.Red;
+
     }
     return (
         <div className={classes.App}>
           <h1>Hi This my home page</h1>
           <p className={assignedClasses.join(' ')}>Secondary header</p>
-          <button style={style} onClick={this.toggleHandler}>Show Persons</button>
+          <button className={buttonClass} onClick={this.toggleHandler}>Show Persons</button>
           {persons}
         </div>
     );
