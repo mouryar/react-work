@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classes from './App.css';
-import Person from './Person/Person';
+import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
 
@@ -42,37 +43,22 @@ class App extends Component {
     this.setState({persons: personCopy});
   }
   render() {
-
-    var buttonClass = "";
-    const assignedClasses  = [];
-    if(this.state.persons.length  <= 2){
-      assignedClasses.push(classes.red);
-    }
-
-    if(this.state.persons.length <= 1){
-      assignedClasses.push(classes.old);
-    }
-
     let persons = null;
     if(this.state.showPerson){
       persons = (
                 <div>
-                  {this.state.persons.map((person, index) => {
-                  return <Person name={person.name} 
-                                  age={person.age}
-                                  click={this.deletPerson.bind(this, index)}
-                                  key={person.id}
-                                  changed={(event) => this.nameChangeHandler(event, person.id)}/>
-                  })}
+                  <Persons
+                    persons={this.state.persons}
+                    clicked={this.deletPerson}
+                    changed={this.nameChangeHandler}/>
                 </div>);
-                buttonClass = classes.Red;
-
     }
     return (
         <div className={classes.App}>
-          <h1>Hi This my home page</h1>
-          <p className={assignedClasses.join(' ')}>Secondary header</p>
-          <button className={buttonClass} onClick={this.toggleHandler}>Show Persons</button>
+          <Cockpit
+            showPerson={this.state.showPerson}
+            persons={this.state.persons}
+            clicked={this.toggleHandler}/>
           {persons}
         </div>
     );
