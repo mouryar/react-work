@@ -18,12 +18,13 @@ const cockpit = (props) => {
     if(props.persons.length <= 1){
       assignedClasses.push(classes.bold);
     }
-    
+
     return (
         <Aux>
           <h1>Hi This my home page</h1>
           <p className={assignedClasses.join(' ')}>Secondary header</p>
           <button className={buttonClass} onClick={props.clicked}>Show Persons</button>
+          <button onClick={props.loginClick}>Log in</button>
         </Aux>
     );
 }

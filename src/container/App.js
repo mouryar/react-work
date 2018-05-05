@@ -5,6 +5,8 @@ import Cockpit from '../components/Cockpit/Cockpit';
 import Aux from '../hoc/Aux';
 import WithClass from '../hoc/withClass'
 
+export const AuthContext = React.createContext(false);
+
 class App extends Component {
 
   state = {
@@ -15,7 +17,8 @@ class App extends Component {
     ],
     otherPerson: 'I',
     showPerson: false,
-    toggleCount: 0
+    toggleCount: 0,
+    authenticated: false
   }
 
   nameChangeHandler = (event, id) => {
@@ -46,6 +49,12 @@ class App extends Component {
       )
   }
 
+  loginClick = () => {
+    this.setState({
+      authenticated: true
+    })
+  }
+
   deletPerson = (personIndex) => {
     const personCopy = [...this.state.persons];
     personCopy.splice(personIndex, 1);
@@ -67,8 +76,12 @@ class App extends Component {
           <Cockpit
             showPerson={this.state.showPerson}
             persons={this.state.persons}
-            clicked={this.toggleHandler}/>
-          {persons}
+            clicked={this.toggleHandler}
+            loginClick={this.loginClick}/>
+          <AuthContext.Provider value={this.state.authenticated}>
+            {persons}
+          </AuthContext.Provider>
+          
         </Aux>
     );
   }
